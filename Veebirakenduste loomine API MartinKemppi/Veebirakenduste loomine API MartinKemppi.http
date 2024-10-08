@@ -1,0 +1,6 @@
+@Veebirakenduste_loomine_API_MartinKemppi_HostAddress = http://localhost:5233
+
+GET {{Veebirakenduste_loomine_API_MartinKemppi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
