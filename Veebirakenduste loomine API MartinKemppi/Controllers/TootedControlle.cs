@@ -78,5 +78,36 @@ namespace Veebirakenduste_loomine_API_MartinKemppi.Controllers
         }
 
 
+        [HttpGet("kustuta-tooded")] // GET /tooted/kustuta-tooded
+        public List<Toode> Kustutakoik()
+        {
+            _tooted.Clear();
+            return _tooted;
+        }
+
+        [HttpGet("aktiivsus-väär")] // GET /tooted/aktiivsus-väär
+        public List<Toode> Aktiivsus_vaar()
+        {
+            foreach (var t in _tooted)
+            {
+                t.IsActive = false;
+            }
+            return _tooted;
+        }
+
+        [HttpGet("näita/{id}")] // GET /tooted/näita/id
+        public ActionResult<Toode> Naita(int id)
+        {
+            var toode = _tooted.Find(t => t.Id == id);
+            return toode != null ? toode : NotFound();
+        }
+
+        [HttpGet("max-hind")] // GET /tooted/max-hind
+        public ActionResult<Toode> Maxhind()
+        {
+            var toode = _tooted.OrderByDescending(t => t.Price).First();
+            return toode != null ? toode : NotFound();
+        }
+
     }
 }
