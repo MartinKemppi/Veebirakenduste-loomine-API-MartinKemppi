@@ -1,13 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Veebirakenduste_loomine_API_MartinKemppi.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddHttpClient();
+builder.Services.AddDbContext<DBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
@@ -29,5 +31,12 @@ app.UseCors(options => options
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Ensure the database is created
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<DBContext>();
+    context.Database.EnsureCreated();
+}
 
 app.Run();

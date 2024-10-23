@@ -41,6 +41,21 @@ namespace Veebirakenduste_loomine_API_MartinKemppi.Controllers
             return _kasutaja;
         }
 
+        // DELETE https://localhost:4444/api/kasutajad/kustuta/{id}
+        [HttpDelete("kustuta/{id}")]
+        public ActionResult<List<Kasutaja>> Kustuta(int id)
+        {
+            var kasutaja = _kasutaja.FirstOrDefault(k => k.Id == id);
+            if (kasutaja == null)
+            {
+                return NotFound();
+            }
+
+            _kasutaja.Remove(kasutaja);
+            return _kasutaja;
+        }
+
+
         // POST https://localhost:4444/api/kasutajad/lisa/1/kasutaja/parool1/mina/tema
         [HttpPost("lisa/{id}/{kasutajanimi}/{salasona}/{eesnimi}/{perekonnanimi}")]
         public List<Kasutaja> Add(int id, string kasutajanimi, string salasona, string eesnimi, string perekonnanimi)

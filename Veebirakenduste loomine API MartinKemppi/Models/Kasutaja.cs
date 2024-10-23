@@ -1,4 +1,6 @@
-﻿namespace Veebirakenduste_loomine_API_MartinKemppi.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Veebirakenduste_loomine_API_MartinKemppi.Models
 {
     public class Kasutaja
     {
