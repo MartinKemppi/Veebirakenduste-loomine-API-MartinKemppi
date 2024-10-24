@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Veebirakenduste_loomine_API_MartinKemppi.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PaymentController : ControllerBase
     {
@@ -52,4 +52,5 @@ namespace Veebirakenduste_loomine_API_MartinKemppi.Controllers
             }
         }
     }
+
 }

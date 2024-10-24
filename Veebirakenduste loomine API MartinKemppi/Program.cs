@@ -39,4 +39,11 @@ using (var scope = app.Services.CreateScope())
     context.Database.EnsureCreated();
 }
 
+
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
 app.Run();
